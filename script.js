@@ -29,14 +29,9 @@ console.log(getDiffDays("2222222222", "2020-03-15")); // Error: invalid date
 console.log(getDiffDays("2021-01-02", "2020-03-15")); // Error: your start date is later than end
 
 // 3
-const isWeekend = function (date1) {
-  let date = new Date(date1);
-
-  if (date.getDay() === 6 || date.getDay() === 0) {
-    return "true";
-  } else {
-    return "false";
-  }
+const isWeekend = function (date) {
+  let dayOfWeek = new Date(date).getDay();
+  return dayOfWeek === 6 || dayOfWeek === 0;
 };
 console.log(isWeekend("2022-02-12")); // true
 console.log(isWeekend("2022-02-13")); // true
@@ -55,11 +50,8 @@ const newPerson = JSON.stringify(person);
 console.log(person);
 console.log(JSON.parse(newPerson));
 
-const { fullName } = person;
-const { street } = person.address;
-const { city } = person.address;
-const { house } = person.address;
-console.log(fullName);
-console.log(street);
-console.log(city);
-console.log(house);
+const {
+  fullName,
+  address: { street, city, house },
+} = person;
+console.log(fullName, street, city, house);
